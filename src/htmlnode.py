@@ -19,3 +19,16 @@ class HTMLNode:
     def __repr__(self):
         return f"HTMLNode:\n    tag: {self.tag}\n    value: {self.value}\n    children: {self.children}\n    props: {self.props}"
 
+class LeafNode(HTMLNode):
+    def __init__(self, tag, value, props=None):
+        super().__init__(tag, value, None, props)
+
+    def to_html(self):
+        if self.value is None:
+            raise ValueError('All leaf nodes must have a value')
+        if self.tag is None:
+            return self.value
+        return f"<{self.tag}{super().props_to_html()}>{self.value}</{self.tag}>"
+
+    def __repr__(self):
+        return f"LeafNode:\n    tag: {self.tag}\n    value: {self.value}\n    props: {self.props}"
