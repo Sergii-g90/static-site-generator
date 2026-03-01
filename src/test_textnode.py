@@ -40,29 +40,29 @@ class TestTextNode(unittest.TestCase):
         leaf_node = text_node_to_html_node(node)
         self.assertEqual(leaf_node.to_html(),'<a href="https://google.com">Node text</a>')
 
-    def text_to_html_bold_type(self):
+    def test_to_html_bold_type(self):
         node = TextNode("Bold text", TextType.BOLD)
         leaf_node = text_node_to_html_node(node)
         self.assertEqual(leaf_node.to_html(),'<b>Bold text</b>')
 
-    def text_to_html_italic_type(self):
+    def test_to_html_italic_type(self):
         node = TextNode("Italic text", TextType.ITALIC)
         leaf_node = text_node_to_html_node(node)
         self.assertEqual(leaf_node.to_html(), '<i>Italic text</i>')
 
-    def text_to_html_code(self):
+    def test_to_html_code(self):
         node = TextNode("Code text", TextType.CODE)
         leaf_node = text_node_to_html_node(node)
         self.assertEqual(leaf_node.to_html(), '<code>Code text</code>')
 
-    def text_to_html_image(self):
+    def test_to_html_image(self):
         node = TextNode("Image alt text", TextType.IMAGE, "https://google.com/image.png")
         leaf_node = text_node_to_html_node(node)
         self.assertEqual(leaf_node.to_html(), '<img src="https://google.com/image.png" alt="Image alt text">')
 
-    def text_to_html_wrong_type(self):
+    def test_to_html_wrong_type(self):
         with self.assertRaises(Exception) as context:
-            text_node_to_html_node(TextNode("Code text", TextType.TEST))
+            text_node_to_html_node(TextNode("Code text", "Test"))
         self.assertEqual(str(context.exception), "Text type is not correct")
 
 
