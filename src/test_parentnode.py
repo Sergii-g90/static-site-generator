@@ -6,7 +6,6 @@ class TestParentNode(unittest.TestCase):
     def test_to_html_with_children(self):
         child_node = LeafNode("span", "child")
         parent_node = ParentNode("div", [child_node])
-        print(f"Parent to html: {parent_node.to_html()}")
         self.assertEqual(parent_node.to_html(), "<div><span>child</span></div>")
 
     def test_to_html_with_grandchildren(self):
@@ -53,3 +52,6 @@ class TestParentNode(unittest.TestCase):
             }
         )
         self.assertEqual(node.to_html(),'<p href="https://google.com" test1="property1" test2="property2"><b>Bold text</b>Normal text<i>italic text</i>Normal text<a href="https://mobile.google.com" target="_blank" style="test">Some text</a></p>')
+
+if __name__ == "__main__":
+    unittest.main()
